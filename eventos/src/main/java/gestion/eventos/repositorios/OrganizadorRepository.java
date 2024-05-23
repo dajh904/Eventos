@@ -5,7 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import gestion.eventos.entidades.Organizador;
 
+
 @Repository
 public interface OrganizadorRepository extends JpaRepository<Organizador, Integer>{
-
+    Organizador findByCorreo(String correo);
 }

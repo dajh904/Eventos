@@ -14,12 +14,14 @@ public class Organizador {
     private String nombre;
     private String apellido;
     private int num_doc;
+    private String correo;
+    private String contrasena;
 
     //Getters y Setters
-    public int getId_organizado() {
+    public int getId_organizador() {
         return Id_organizador;
     }
-    public void setId_organizado(int id_organizador) {
+    public void setId_organizador(int id_organizador) {
         Id_organizador = id_organizador;
     }
     public String getNombre() {
@@ -40,7 +42,18 @@ public class Organizador {
     public void setNum_doc(int num_doc) {
         this.num_doc = num_doc;
     }
-
+    public String getCorreo() {
+        return correo;
+    }
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    public String getContrasena() {
+        return contrasena;
+    }
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
     //Constructor
     public Organizador() {
     }
