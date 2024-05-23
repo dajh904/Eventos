@@ -1,0 +1,47 @@
+body{
+    font-family: 'Poppins';
+}
+
+/* Carrusel */
+
+.carousel-inner .carousel-item img{
+    height: 40vh;
+}
+
+.texto-carousel{
+    font-size: 1.1rem;
+    text-shadow: 2px 2px #000;
+}
+
+/* Títulos */
+.title{
+    text-decoration: underline;
+}
+
+.title-admin{
+    border-bottom: solid #000000;
+    text-align: end;
+}
+
+/*Cards eventos*/
+
+.card-img-evento{
+    height: 247px;
+    object-fit:cover;
+}
+
+/* Inputs login */
+@media(max-width: 575.9px){
+    .login .form-label{
+        border: none !important;
+    }
+
+    .login .form-label div{
+        display: flex;
+        align-items: start;
+    }
+
+    .login div .form-control{
+        border: solid #000000 !important;
+    }
+}
