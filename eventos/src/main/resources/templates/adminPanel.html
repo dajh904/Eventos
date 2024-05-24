@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Evento</title>
+
+    <!--CSS Booststrap y personalizado-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Fuentes tipográficas-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid mx-3">
+                <a class="navbar-brand" th:href="@{/admin/panel}">Logo Empresa</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+                    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarToggler">
+                    <div class="navbar-nav order-2">
+                        <a class="nav-link" th:href="@{/logout}"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                    </div>
+                    <ul class="navbar-nav mb-2 mb-lg-0 order-1">
+                        <li class="nav-item ms-lg-5">
+                            <a class="nav-link" th:href="@{/admin/panel}">Panel de administracion</a>
+                        </li>
+                        <li class="nav-item ms-lg-2">
+                            <a class="nav-link" th:href="@{/admin/crear-evento}">Crear Evento</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container-fluid my-3 px-4">
+        <div class="title mb-3">
+            <h1>PANEL DE ADMINISTRACIÓN</h1>
+        </div>
+        <h2 class="title my-2">EVENTOS ACTIVOS</h2>
+        <div class="container-fluid">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">NOMBRE DEL EVENTO</th>
+                        <th scope="col">FECHA Y HORA DE INICIO</th>
+                        <th scope="col">FECHA Y HORA DE FIN</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr">
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--
+        <div th:if="$pagina.totalElements">
+            <p>Mostrando página <span th:text="${pagina.number + 1}"></span> de <span th:text="${pagina.totalPages}"></span>
+            </p>
+            <nav class="mx-auto" aria-label="Paginacion">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${pagina.first} ? 'disabled' : ''">
+                        <a class="page-link" th:href="@{'?page=0&size=' + ${pagina.size}}">Primera</a>
+                    </li>
+                    <li class="page-item" th:classappend="${pagina.first} ? 'disabled' : ''">
+                        <a class="page-link" th:with="paginaAnt=${pagina.number - 1}"
+                            th:href="@{'?page=' + ${paginaAnt} + '&size=' + ${pagina.size}}">Ant</a>
+                    </li>
+                    <li class="page-item" th:each="p:${numPaginas}"
+                        th:classappend="${p == (pagina.number + 1)} ? 'active' : ''">
+                        <a class="page-link" th:with="numPagina=${p - 1}"
+                            th:href="@{'?page=' + ${paginaNum} + '&size=' + ${pagina.size}}" th:text="${p}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${pagina.last} ? 'disabled' : ''">
+                        <a class="page-link" th:with="paginaSig=${pagina.number + 1}"
+                            th:href="@{'?page=' + ${paginaSig} + '&size=' + ${pagina.size}}">Sig</a>
+                    </li>
+                    <li class="page-item" th:classappend="${pagina.last} ? 'disabled' : ''">
+                        <a class="page-link" th:with="ultimaPag = ${pagina.totalPages - 1}"
+                            th:href="@{'?page=' + ${ultimaPag} '&size=' + ${pagina.size}}">Ultima</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        -->
+    </main>
+
+    <!-- JS propio y de bootstrap-->
+    <script src="/js/main.js"></script>
+    <script src="/js/bootstrap/bootstrap.bundle.js"></script>
+</body>
+
+</html>
