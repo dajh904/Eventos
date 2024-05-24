@@ -7,10 +7,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import gestion.eventos.servicios.OrganizadorDetailService;
 
@@ -22,18 +21,25 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity HttpSecurity) throws Exception{
-        return HttpSecurity.authorizeHttpRequests(registry -> {
+        HttpSecurity.authorizeHttpRequests(registry -> {
             registry.requestMatchers("/admin/**").authenticated();
             registry.anyRequest().permitAll();
-        }
-        )
-        .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
-        .build();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return uDetailService;
+        })
+        .formLogin(httpSecurityFormLoginConfigurer -> { 
+            httpSecurityFormLoginConfigurer
+            .loginPage("/login").permitAll()
+            .defaultSuccessUrl("/admin/panel");
+        })
+        .logout(httpSecurityLogoutConfigurer -> {
+            httpSecurityLogoutConfigurer
+            .invalidateHttpSession(true)
+            .clearAuthentication(true)
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/login?logout")
+            .permitAll();
+        });
+        
+        return HttpSecurity.build();
     }
 
     @Bean

@@ -32,17 +32,14 @@
                 </button>
                 <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarToggler">
                     <div class="navbar-nav order-2">
-                        <a class="nav-link" th:href="@{/login}"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                        <a class="nav-link" th:href="@{/logout}"><i class="bi bi-box-arrow-left"></i> Logout</a>
                     </div>
                     <ul class="navbar-nav mb-2 mb-lg-0 order-1">
                         <li class="nav-item ms-lg-5">
-                            <a class="nav-link" th:href="@{/explorar}">Historial de Eventos</a>
+                            <a class="nav-link" th:href="@{/admin/panel}">Panel de administracion</a>
                         </li>
                         <li class="nav-item ms-lg-2">
-                            <a class="nav-link" th:href="@{/explorar}">Crear Evento</a>
-                        </li>
-                        <li class="nav-item ms-lg-2">
-                            <a class="nav-link" th:href="@{/explorar}">Editar Evento</a>
+                            <a class="nav-link" th:href="@{/admin/crear-evento}">Crear Evento</a>
                         </li>
                     </ul>
                 </div>

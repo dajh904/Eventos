@@ -16,7 +16,7 @@ public class MainController {
 		return "home";
 	}
 
-	@GetMapping("/prueba")
+	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
