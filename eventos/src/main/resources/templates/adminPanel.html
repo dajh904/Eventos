@@ -48,35 +48,66 @@
     </header>
 
     <main class="container-fluid my-3 px-4">
-        <div class="title mb-3">
+        <div class="title mb-5">
             <h1>PANEL DE ADMINISTRACIÓN</h1>
         </div>
         <h2 class="title my-2">EVENTOS ACTIVOS</h2>
-        <div class="container-fluid">
-            <table class="table table-hover text-center">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">NOMBRE DEL EVENTO</th>
-                        <th scope="col">FECHA Y HORA DE INICIO</th>
-                        <th scope="col">FECHA Y HORA DE FIN</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr">
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div th:if="${pagina.totalPages} == 0" class="mb-3">
+            <h3 class="text-center">No hay eventos activos</h3>
         </div>
-        <!--
-        <div th:if="$pagina.totalElements">
+        <div th:if="${pagina.totalPages} > 0" class="mb-3">
+            <div class="container-fluid">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">NOMBRE DEL EVENTO</th>
+                            <th scope="col">FECHA Y HORA DE INICIO</th>
+                            <th scope="col">FECHA Y HORA DE FIN</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="evento:${pagina.content}">
+                            <td th:text="${evento.Id_evento.Id_evento}"></td>
+                            <td th:text="${evento.Id_evento.nombre}"></td>
+                            <td th:text="${evento.Id_evento.fecha_ini}"></td>
+                            <td th:text="${evento.Id_evento.fecha_fin}"></td>
+                            <td>
+                                <a role="button" class="btn btn-outline-danger btn-sm mt-1 mt-md-0" data-bs-toggle="modal"
+                                    data-bs-target="#eliminar"><i class="bi bi-pencil-square"></i> Editar</a>
+    
+                                <!-- Modal -->
+                                <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="ModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">¿Seguro que desea
+                                                    eliminarlo?</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Al eliminar el registro será imposible recuperarlo
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cerrar</button>
+                                                <a th:href="@{/admin/usuarios/eliminar/} + ${user.id}" role="button"
+                                                    class="btn btn-danger">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <!-- Paginación -->
             <p>Mostrando página <span th:text="${pagina.number + 1}"></span> de <span th:text="${pagina.totalPages}"></span>
             </p>
             <nav class="mx-auto" aria-label="Paginacion">
@@ -104,7 +135,66 @@
                 </ul>
             </nav>
         </div>
-        -->
+        <div class="text-end" id="btn-crear-evento">
+            <a th:href="@{/admin/crear-evento}">
+                <button type="button" class="btn btn-primary btn-lg">CREAR EVENTO</button>
+            </a>
+        </div>
+        <hr class="border border-2 border-black mb-5">
+        <h2 class="title my-2">EVENTOS TERMINADOS</h2>
+        <div th:if="${pagina.totalPages} == 0" class="mb-3">
+            <h3 class="text-center">No hay eventos terminados</h3>
+        </div>
+        <div th:if="${pagina.totalPages} > 0" class="mb-3">
+            <div class="container-fluid">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">NOMBRE DEL EVENTO</th>
+                            <th scope="col">FECHA Y HORA DE INICIO</th>
+                            <th scope="col">FECHA Y HORA DE FIN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="evento:${pagina.content}">
+                            <td th:text="${evento.Id_evento.Id_evento}"></td>
+                            <td th:text="${evento.Id_evento.nombre}"></td>
+                            <td th:text="${evento.Id_evento.fecha_ini}"></td>
+                            <td th:text="${evento.Id_evento.fecha_fin}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <!-- Paginación -->
+            <p>Mostrando página <span th:text="${pagina.number + 1}"></span> de <span th:text="${pagina.totalPages}"></span>
+            </p>
+            <nav class="mx-auto" aria-label="Paginacion">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${pagina.first} ? 'disabled' : ''">
+                        <a class="page-link" th:href="@{'?page=0&size=' + ${pagina.size}}">Primera</a>
+                    </li>
+                    <li class="page-item" th:classappend="${pagina.first} ? 'disabled' : ''">
+                        <a class="page-link" th:with="paginaAnt=${pagina.number - 1}"
+                            th:href="@{'?page=' + ${paginaAnt} + '&size=' + ${pagina.size}}">Ant</a>
+                    </li>
+                    <li class="page-item" th:each="p:${numPaginas}"
+                        th:classappend="${p == (pagina.number + 1)} ? 'active' : ''">
+                        <a class="page-link" th:with="numPagina=${p - 1}"
+                            th:href="@{'?page=' + ${paginaNum} + '&size=' + ${pagina.size}}" th:text="${p}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${pagina.last} ? 'disabled' : ''">
+                        <a class="page-link" th:with="paginaSig=${pagina.number + 1}"
+                            th:href="@{'?page=' + ${paginaSig} + '&size=' + ${pagina.size}}">Sig</a>
+                    </li>
+                    <li class="page-item" th:classappend="${pagina.last} ? 'disabled' : ''">
+                        <a class="page-link" th:with="ultimaPag = ${pagina.totalPages - 1}"
+                            th:href="@{'?page=' + ${ultimaPag} '&size=' + ${pagina.size}}">Ultima</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </main>
 
     <!-- JS propio y de bootstrap-->

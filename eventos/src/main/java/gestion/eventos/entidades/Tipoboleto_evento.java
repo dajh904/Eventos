@@ -14,12 +14,12 @@ public class Tipoboleto_evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id_TipoBoleto_Evento;
     @ManyToOne
-    @JoinColumn(name = "Tipoboleto", referencedColumnName = "Id_Tipoboleto")
+    @JoinColumn(name = "Id_Tipoboleto")
     private Tipoboleto Id_Tipoboleto;
     private int precioboleto;
     private int cantidad_disp;
     @ManyToOne
-    @JoinColumn(name = "Evento", referencedColumnName = "Id_evento")
+    @JoinColumn(name = "Id_evento")
     private Evento Id_evento;
 
     //Getters y Setters

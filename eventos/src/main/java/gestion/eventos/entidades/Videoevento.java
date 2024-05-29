@@ -15,7 +15,7 @@ public class Videoevento {
     private int Id_videoevento;
     private String nombre;
     @ManyToOne
-    @JoinColumn(name = "Evento", referencedColumnName = "Id_evento")
+    @JoinColumn(name = "Id_evento")
     private Evento Id_evento;
 
     //Getters y Setters

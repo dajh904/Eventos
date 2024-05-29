@@ -15,7 +15,7 @@ public class Imagenevento {
     private int Id_imagenevento;
     private String direccion;
     @ManyToOne
-    @JoinColumn(name = "Evento", referencedColumnName = "Id_evento")
+    @JoinColumn(name = "Id_evento")
     private Evento Id_evento;
 
     //Getters y Setters

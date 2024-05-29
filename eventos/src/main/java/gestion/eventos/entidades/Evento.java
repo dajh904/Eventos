@@ -1,5 +1,7 @@
 package gestion.eventos.entidades;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,17 +17,17 @@ public class Evento {
     private int Id_evento;
     private String nombre;
     private String descripcion;
-    private String hora_ini;
-    private String hora_fin;
+    private LocalDateTime fecha_ini;
+    private LocalDateTime fecha_fin;
     @ManyToOne
-    @JoinColumn(name = "Organizador", referencedColumnName = "Id_organizador")
+    @JoinColumn(name = "Id_organizador")
     private Organizador Id_organizador;
     @ManyToOne
-    @JoinColumn(name = "Estadoevento", referencedColumnName = "Id_Estadoevento")
+    @JoinColumn(name = "Id_Estadoevento")
     private Estadoevento Id_Estadoevento;
     private int aforo;
     @ManyToOne
-    @JoinColumn(name = "Ubicacionevento", referencedColumnName = "Id_Ubicacionevento")
+    @JoinColumn(name = "Id_Ubicacion")
     private Ubicacionevento Id_Ubicacion;
 
     //Getters y Setters
@@ -47,17 +49,17 @@ public class Evento {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public String getHora_ini() {
-        return hora_ini;
+    public LocalDateTime getFecha_ini() {
+        return fecha_ini;
     }
-    public void setHora_ini(String hora_ini) {
-        this.hora_ini = hora_ini;
+    public void setFecha_ini(LocalDateTime fecha_ini) {
+        this.fecha_ini = fecha_ini;
     }
-    public String getHora_fin() {
-        return hora_fin;
+    public LocalDateTime getFecha_fin() {
+        return fecha_fin;
     }
-    public void setHora_fin(String hora_fin) {
-        this.hora_fin = hora_fin;
+    public void setFecha_fin(LocalDateTime fecha_fin) {
+        this.fecha_fin = fecha_fin;
     }
     public int getAforo() {
         return aforo;
