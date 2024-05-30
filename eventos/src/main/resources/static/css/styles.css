@@ -1,3 +1,60 @@
+:root{
+    --azul-oscuro: #03045E;
+    --azul-medio: #0077B6;
+    --azul-claro: #90E0EF;
+    --gris-oscuro: #0A0908;
+    --negro: #000000 !important;
+    --blanco: #ffffff !important;
+}
+
+/* Fondos y tipografia de color*/
+.bg-azul-oscuro{
+    background-color: var(--azul-oscuro);
+}
+
+.bg-azul-medio{
+    background-color: var(--azul-medio);
+}
+
+.bg-azul-claro{
+    background-color: var(--azul-claro);
+}
+
+.bg-gris-oscuro{
+    background-color: var(--gris-oscuro);
+}
+
+.bg-blanco{
+    background-color: var(--blanco);
+}
+
+.color-azul-oscuro{
+    color: var(--azul-oscuro);
+}
+
+.color-azul-medio{
+    color: var(--azul-medio);
+}
+
+.color-azul-claro{
+    color: var(--azul-claro);
+}
+
+.color-gris-oscuro{
+    color: var(--gris-oscuro);
+}
+
+.color-negro{
+    color: var(--negro);
+}
+
+.color-blanco{
+    color: var(--blanco);
+}
+
+
+/* Clase general - body */
+
 body{
     font-family: 'Poppins';
 }

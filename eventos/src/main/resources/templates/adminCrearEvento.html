@@ -23,7 +23,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-azul-medio">
             <div class="container-fluid mx-3">
                 <a class="navbar-brand" th:href="@{/admin/panel}">Logo Empresa</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
@@ -51,56 +51,94 @@
         <div class="title-admin mb-2">
             <h1>Crear Evento</h1>
         </div>
-        <h2 class="mb-3"><i class="bi bi-pencil-square"></i> Nombre del Evento</h2>
-        <div class="d-flex flex-md-row">
-            <div>
-                <div>
-                    <form action="submit">
-                        <div class="mb-3">
-                            Cargue de imagen
-                        </div>
-                        <div>
-                            <label class="form-label">Boleta
-                                <input class="form-control" type="text">
-                            </label>
-                            <label class="form-label">Precio
-                                <input class="form-control" type="text">
-                            </label>
-                            <label class="form-label">Cantidad
-                                <input class="form-control" type="text">
-                            </label>
-                            <label>
-                                <button class="btn btn-outline-danger btn-sm mt-1 mt-md-0"><i class="bi bi-trash3"></i>
-                                    Borrar</button>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="form-label">Boleta
-                                <input class="form-control" type="text">
-                            </label>
-                            <label class="form-label">Precio
-                                <input class="form-control" type="text">
-                            </label>
-                            <label class="form-label">Cantidad
-                                <input class="form-control" type="text">
-                            </label>
-                            <label>
-                                <button class="btn btn-outline-danger btn-sm mt-1 mt-md-0"><i class="bi bi-trash3"></i>
-                                    Borrar</button>
-                            </label>
-                        </div>
-                        <button class="btn btn-outline-primary btn-sm mt-1 mt-md-0"><i class="bi bi-trash3"></i>
-                            Agregar</button>
-                    </form>
+        <form th:object="${tipoboleto}" th:action="@{/admin/crear-evento/guardar}" method="post">
+            <div hidden>
+                <label for="id_evento">Id:</label>
+                <input type="text" th:field="*{Id_evento.Id_evento}" class="form-control mb-2" id="id_evento" readonly>
+            </div>
+            <h2 class="mb-3 input-group"><i class="bi bi-pencil-square"></i><input type="text"
+                    placeholder="NOMBRE DEL EVENTO" class="form-control border border-0 fw-bold" th:field="*{Id_evento.nombre}"></h2>
+            <div class="d-flex flex-column flex-md-row justify-content-between">
+                <div class="flex-md-column">
+                    <div class="mb-3" th:object="${imagen}">
+                        <input type="file" name="file" th:text="*{direccion}">
+                    </div>
+                    <div class="table-responsive-sm">
+                        <table class="table table-hover table-bordered border-black" id="boletas">
+                            <thead class="text-center">
+                                <tr class="border-0">
+                                    <th scope="col" class="border-top border-black">Boleta</th>
+                                    <th scope="col" class="border-top border-black">Precio</th>
+                                    <th scope="col" class="border-top border-black">Cantidad</th>
+                                    <th scope="col" class="border-end-0"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input class="form-control border border-0" type="text" placeholder="Platino"
+                                            th:field="*{Id_Tipoboleto.nombre}" required>
+                                    </td>
+                                    <td>
+                                        <input class="form-control border border-0" type="number" placeholder="$$$"
+                                            th:field="*{precioboleto}" required>
+                                    </td>
+                                    <td><input class="form-control border border-0" type="number" placeholder="100"
+                                            th:field="*{cantidad_disp}" required></td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-danger btn-sm d-flex align-items-center"
+                                            onclick="">
+                                            <i class="bi bi-trash3"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end mb-3">
+                        <a role="button" class="btn btn-primary" onclick="insertarFila()">
+                            Agregar
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    
+                <div class="flex-md-column">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        <input type="datetime-local" class="form-control border-0" placeholder="Fecha inicio" th:field="*{Id_evento.fecha_ini}" required>
+                                    </td>
+                                    <td colspan="2">
+                                        <input type="datetime-local" class="form-control border-0" placeholder="Fecha fin" th:field="*{Id_evento.fecha_fin}" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="w-50 text-center" colspan="1"><span>Ubicación</span></th>
+                                    <td colspan="3"><input type="text" class="form-control border-0" placeholder="Ingrese ubicación" th:field="*{Id_evento.Id_Ubicacion.nombre}" required></td>
+                                </tr>
+                                <tr>
+                                    <th class="text-center" colspan="1">Aforo</th>
+                                    <td colspan="2">
+                                        <input class="form-control border border-0" type="number" placeholder="###"
+                                        th:field="*{Id_evento.aforo}" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4" colspan="4">
+                                        <textarea type="text" class="form-control border-0" placeholder="Ingrese una descripción del evento" rows="10" th:field="*{Id_evento.descripcion}" maxlength="500">
+                                        </textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary btn-large">GUARDAR</button>
+                    </div>
                 </div>
             </div>
-            <div>
-
-            </div>
-        </div>
+        </form>
     </main>
 
     <!-- JS propio y de bootstrap-->

@@ -25,7 +25,7 @@ public class Evento {
     @ManyToOne
     @JoinColumn(name = "Id_Estadoevento")
     private Estadoevento Id_Estadoevento;
-    private int aforo;
+    private Integer aforo;
     @ManyToOne
     @JoinColumn(name = "Id_Ubicacion")
     private Ubicacionevento Id_Ubicacion;
@@ -61,10 +61,10 @@ public class Evento {
     public void setFecha_fin(LocalDateTime fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
-    public int getAforo() {
+    public Integer getAforo() {
         return aforo;
     }
-    public void setAforo(int aforo) {
+    public void setAforo(Integer aforo) {
         this.aforo = aforo;
     }
     public Organizador getId_organizador() {

@@ -16,8 +16,8 @@ public class Tipoboleto_evento {
     @ManyToOne
     @JoinColumn(name = "Id_Tipoboleto")
     private Tipoboleto Id_Tipoboleto;
-    private int precioboleto;
-    private int cantidad_disp;
+    private Integer precioboleto;
+    private Integer cantidad_disp;
     @ManyToOne
     @JoinColumn(name = "Id_evento")
     private Evento Id_evento;
@@ -29,16 +29,16 @@ public class Tipoboleto_evento {
     public void setId_TipoBoleto_Evento(int id_TipoBoleto_Evento) {
         Id_TipoBoleto_Evento = id_TipoBoleto_Evento;
     }
-    public int getPrecioboleto() {
+    public Integer getPrecioboleto() {
         return precioboleto;
     }
-    public void setPrecioboleto(int precioboleto) {
+    public void setPrecioboleto(Integer precioboleto) {
         this.precioboleto = precioboleto;
     }
-    public int getCantidad_disp() {
+    public Integer getCantidad_disp() {
         return cantidad_disp;
     }
-    public void setCantidad_disp(int cantidad_disp) {
+    public void setCantidad_disp(Integer cantidad_disp) {
         this.cantidad_disp = cantidad_disp;
     }
     public Tipoboleto getId_Tipoboleto() {
