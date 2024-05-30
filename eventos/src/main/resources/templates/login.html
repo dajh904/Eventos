@@ -50,6 +50,10 @@
                         <span><i class="bi bi-check-circle-fill"></i> Ha cerrado sesión exitosamente</span>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    <div th:if="${param.registro}" class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                        <span><i class="bi bi-check-circle-fill"></i> Se ha registrado con éxito</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                     <div class="mb-3">
                         <label
                             class="form-label d-flex flex-column flex-sm-row align-items-sm-center border border-2 border-dark text-center">
