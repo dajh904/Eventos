@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-05-2024 a las 22:18:40
+-- Tiempo de generación: 31-05-2024 a las 00:14:53
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -89,6 +89,13 @@ CREATE TABLE `organizador` (
   `correo` varchar(50) NOT NULL,
   `contrasena` varchar(72) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `organizador`
+--
+
+INSERT INTO `organizador` (`Id_organizador`, `nombre`, `apellido`, `num_doc`, `correo`, `contrasena`) VALUES
+(1, 'Diego', 'Jaimes', 123456789, 'diego@dev.com', '$2a$12$eR6YsNs./GniIHbNx8Vv7OHOrh6NpmPZtxDYNh18xdgb03NcVM0gK');
 
 -- --------------------------------------------------------
 
@@ -236,7 +243,7 @@ ALTER TABLE `imagenevento`
 -- AUTO_INCREMENT de la tabla `organizador`
 --
 ALTER TABLE `organizador`
-  MODIFY `Id_organizador` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_organizador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipoboleto`
