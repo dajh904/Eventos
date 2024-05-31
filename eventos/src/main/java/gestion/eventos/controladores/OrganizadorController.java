@@ -1,6 +1,7 @@
 package gestion.eventos.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import gestion.eventos.repositorios.OrganizadorRepository;
 public class OrganizadorController {
     @Autowired
     private OrganizadorRepository organizadorRepo;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/registro")
     public String regOrganizador(Model model){
@@ -25,6 +28,7 @@ public class OrganizadorController {
     @PostMapping("/registro/guardar")
     public String guardarOrganizador(@ModelAttribute Organizador organizador){
         try{
+            organizador.setContrasena(passwordEncoder.encode(organizador.getContrasena()));
             organizadorRepo.save(organizador);
         } catch (Exception e){
             e.printStackTrace();

@@ -52,6 +52,9 @@
     color: var(--blanco);
 }
 
+.color-blanco:hover{
+    color: var(--azul-claro);
+}
 
 /* Clase general - body */
 
@@ -88,6 +91,7 @@ body{
 }
 
 /* Inputs login */
+
 @media(max-width: 575.9px){
     .login .form-label{
         border: none !important;

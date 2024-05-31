@@ -13,7 +13,7 @@ public class Organizador {
     private int Id_organizador;
     private String nombre;
     private String apellido;
-    private int num_doc;
+    private Long num_doc;
     private String correo;
     private String contrasena;
 
@@ -36,10 +36,10 @@ public class Organizador {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    public int getNum_doc() {
+    public Long getNum_doc() {
         return num_doc;
     }
-    public void setNum_doc(int num_doc) {
+    public void setNum_doc(Long num_doc) {
         this.num_doc = num_doc;
     }
     public String getCorreo() {

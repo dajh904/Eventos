@@ -23,13 +23,13 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-azul-medio">
+        <nav class="navbar navbar-expand-lg bg-gris-oscuro">
             <div class="container-fluid justify-content-between p-2 mx-3">
-                <a class="navbar-brand" th:href="@{/home}">Logo Empresa</a>
+                <a class="navbar-brand color-blanco" th:href="@{/home}">Logo Empresa</a>
                 <div>
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/login}"><i class="bi bi-person-circle"></i> Login</a>
+                            <a class="nav-link color-blanco" th:href="@{/login}"><i class="bi bi-person-circle"></i> Login</a>
                         </li>
                     </ul>
                 </div>
@@ -72,8 +72,9 @@
                                 placeholder="**********" required name="password">
                         </label>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary text-end">Acceder</button>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Acceder</button>
+                        <p class="text-center mt-3">Si eres organizador y aún no tienes una cuenta, <a th:href="@{/registro}">registrate aquí</a> </p>
                     </div>
                 </form>
             </div>
