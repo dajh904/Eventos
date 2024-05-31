@@ -25,7 +25,9 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-gris-oscuro">
             <div class="container-fluid mx-3">
-                <a class="navbar-brand color-blanco" th:href="@{/admin/panel}">Logo Empresa</a>
+                <a class="navbar-brand color-blanco" th:href="@{/admin/panel}">
+                    <img src="/img/logo.png" alt="Logo" width="50" height="50" class="d-inline-block">Eventeka
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
                     aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -58,18 +60,15 @@
             </div>
             <h2 class="mb-3 input-group"><i class="bi bi-pencil-square"></i><input type="text"
                     placeholder="NOMBRE DEL EVENTO" class="form-control border border-0 fw-bold" th:field="*{Id_evento.nombre}"></h2>
-            <div class="d-flex flex-column flex-md-row justify-content-between">
+            <div class="d-flex flex-column flex-xxl-row justify-content-between">
                 <div class="flex-md-column">
-                    <div class="mb-3" th:object="${imagen}">
-                        <input type="file" name="file" th:text="*{direccion}">
-                    </div>
                     <div class="table-responsive-sm">
                         <table class="table table-hover table-bordered border-black" id="boletas">
                             <thead class="text-center">
                                 <tr class="border-0">
-                                    <th scope="col" class="border-top border-black">Boleta</th>
-                                    <th scope="col" class="border-top border-black">Precio</th>
-                                    <th scope="col" class="border-top border-black">Cantidad</th>
+                                    <th scope="col" class="border-top border-bottom border-black">Boleta</th>
+                                    <th scope="col" class="border-top border-bottom border-black">Precio</th>
+                                    <th scope="col" class="border-top border-bottom border-black">Cantidad</th>
                                     <th scope="col" class="border-end-0"></th>
                                 </tr>
                             </thead>
@@ -86,8 +85,8 @@
                                     <td><input class="form-control border border-0" type="number" placeholder="100"
                                             th:field="*{cantidad_disp}" required></td>
                                     <td>
-                                        <a role="button" class="btn btn-outline-danger btn-sm d-flex align-items-center"
-                                            onclick="">
+                                        <a role="button" class="btn btn-outline-danger btn-sm d-flex align-items-center justify-content-center"
+                                            onclick="eliminarFila(this)">
                                             <i class="bi bi-trash3"></i>
                                         </a>
                                     </td>
@@ -103,7 +102,7 @@
                 </div>
                 <div class="flex-md-column">
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered border-black">
                             <tbody>
                                 <tr>
                                     <td colspan="2">
