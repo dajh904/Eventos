@@ -2,7 +2,9 @@ package gestion.eventos.entidades;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,15 +21,19 @@ public class Evento {
     private String descripcion;
     private LocalDateTime fecha_ini;
     private LocalDateTime fecha_fin;
-    @ManyToOne
-    @JoinColumn(name = "Id_organizador")
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Id_Organizador", referencedColumnName = "Id_organizador")
     private Organizador Id_organizador;
-    @ManyToOne
-    @JoinColumn(name = "Id_Estadoevento")
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Id_Estadoevento", referencedColumnName = "Id_Estadoevento")
     private Estadoevento Id_Estadoevento;
+
     private Integer aforo;
-    @ManyToOne
-    @JoinColumn(name = "Id_Ubicacion")
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Id_Ubicacion", referencedColumnName = "Id_Ubicacionevento")
     private Ubicacionevento Id_Ubicacion;
 
     //Getters y Setters
@@ -86,7 +92,20 @@ public class Evento {
         Id_Ubicacion = id_Ubicacion;
     }
     
-    //Constructor
+    //Constructores
     public Evento() {
-    }   
+    }
+    
+    public Evento(String nombre, String descripcion, LocalDateTime fecha_ini, LocalDateTime fecha_fin,
+            Organizador id_organizador, Estadoevento id_Estadoevento, Integer aforo, Ubicacionevento id_Ubicacion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fecha_ini = fecha_ini;
+        this.fecha_fin = fecha_fin;
+        Id_organizador = id_organizador;
+        Id_Estadoevento = id_Estadoevento;
+        this.aforo = aforo;
+        Id_Ubicacion = id_Ubicacion;
+    }
+    
 }

@@ -28,8 +28,11 @@ public class Estadoevento {
         this.nombre = nombre;
     }
 
-    //Constructor
+    //Constructores
 
     public Estadoevento() {
+    }
+    public Estadoevento(int Id_Estadoevento) {
+        this.Id_Estadoevento = Id_Estadoevento;
     }
 }

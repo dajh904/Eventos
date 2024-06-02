@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+
+    <!--CSS Booststrap y personalizado-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Fuentes tipográficas-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-gris-oscuro">
+            <div class="container-fluid mx-3">
+                <a class="navbar-brand color-blanco" th:href="@{/home}">
+                    <img src="/img/logo.png" alt="Logo" width="50" height="50" class="d-inline-block">Eventeka
+                </a>
+                <button class="navbar-toggler bg-blanco" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+                    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <form th:action="@{?}+ search.value" class="d-flex mx-auto py-3" role="search">
+                        <div class="input-group">
+                            <input type="search" class="form-control" name="search" placeholder="Buscar evento..." aria-label="Buscar"
+                                aria-describedby="button-addon">
+                            <button class="btn btn-secondary" type="submit" id="button-addon"><i
+                                    class="bi bi-search"></i></button>
+                        </div>
+                    </form>
+                    <div class="navbar-nav order-2">
+                        <a class="nav-link color-blanco" th:href="@{/login}"><i class="bi bi-person-circle"></i> Login</a>
+                    </div>
+                    <ul class="navbar-nav mb-2 mb-lg-0 order-1">
+                        <li class="nav-item mx-lg-5">
+                            <a class="nav-link color-blanco" th:href="@{/explorar}">Explorar Eventos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container-fluid my-3 px-4">
+        <div class="d-block d-md-flex justify-content-between mb-3">
+            <h1 class="title mb-3">EVENTOS</h1>
+            <div class="d-flex justify-content-center h-100">
+                <form th:action="@{?}+ search.value" method="get" class="me-2 me-sm-5 w-100">
+                    <div class="input-group">
+                        <button class="btn btn-primary" type="submit" id="button-addon"><i
+                            class="bi bi-search"></i></button>
+                        <input type="search" class="form-control border-black h-100" name="search" placeholder="Buscar evento..." aria-label="Buscar"
+                            aria-describedby="button-addon">
+                    </div>
+                </form>
+                <form th:action="@{?}+ date" method="get">
+                    <div class="input-group">
+                        <button class="btn bg-marron-claro" type="submit"><i class="bi bi-calendar-event"></i></button>
+                        <input type="date" name="date" id="fecha" class="form-control border-black" aria-label="filtro de fecha">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div th:if="${eventos.size < 1}">
+            <h3 class="text-center">No hay eventos que coincidan con la búsqueda</h3>
+        </div>
+        <div th:if="${eventos.size > 0}">
+            <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 g-4">
+                <div class="col" th:each="evento:${eventos}">
+                    <div class="card border-2 h-100">
+                        <a th:href="@{#}"> <!--Link del evento-->
+                            <img src="/img/sistema.webp" class="card-img-top card-img-evento" alt="No hay sistema">
+                        </a>
+                        <div class="card-body p-0">
+                            <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold" th:text="*{evento.nombre}"></h5>
+                            <div class="d-flex justify-content-between m-0 py-2">
+                                <div>
+                                    <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                    <h6 class="m-0 flex-fill text-center" th:text="*{evento.fecha_ini}"></h6>
+                                </div>
+                                <p class="m-0 ps-2 border-2 border-start flex-fill" th:text="*{evento.descripcion}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-2 h-100">
+                        <a th:href="@{/home}"> <!--Link del evento-->
+                            <img src="/img/esports.jpg" class="card-img-top card-img-evento" alt="...">
+                        </a>
+                        <div class="card-body p-0">
+                            <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
+                            <div class="d-flex justify-content-between m-0 py-2">
+                                <div>
+                                    <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                    <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                                </div>
+                                <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-2 h-100">
+                        <a th:href="@{/home}"> <!--Link del evento-->
+                            <img src="/img/teatro.jpg" class="card-img-top card-img-evento" alt="...">
+                        </a>
+                        <div class="card-body p-0">
+                            <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
+                            <div class="d-flex justify-content-between m-0 py-2">
+                                <div>
+                                    <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                    <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                                </div>
+                                <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-2 h-100">
+                        <a th:href="@{/home}"> <!--Link del evento-->
+                            <img src="/img/concierto.jpg" class="card-img-top card-img-evento" alt="...">
+                        </a>
+                        <div class="card-body p-0">
+                            <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
+                            <div class="d-flex justify-content-between m-0 py-2">
+                                <div>
+                                    <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                    <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                                </div>
+                                <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-2 h-100">
+                        <a th:href="@{/home}"> <!--Link del evento-->
+                            <img src="/img/teatro.jpg" class="card-img-top card-img-evento" alt="...">
+                        </a>
+                        <div class="card-body p-0">
+                            <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
+                            <div class="d-flex justify-content-between m-0 py-2">
+                                <div>
+                                    <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                    <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                                </div>
+                                <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-2 h-100">
+                        <a th:href="@{/home}"> <!--Link del evento-->
+                            <img src="/img/Rock-concert.jpeg" class="card-img-top card-img-evento" alt="...">
+                        </a>
+                        <div class="card-body p-0">
+                            <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
+                            <div class="d-flex justify-content-between m-0 py-2">
+                                <div>
+                                    <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                    <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                                </div>
+                                <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JS propio y de bootstrap-->
+    <script src="/js/main.js"></script>
+    <script src="/js/bootstrap/bootstrap.bundle.js"></script>
+</body>
+
+</html>

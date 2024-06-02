@@ -7,5 +7,5 @@ import gestion.eventos.entidades.Ubicacionevento;
 
 @Repository
 public interface UbicacioneventoRepository extends JpaRepository<Ubicacionevento, Integer>{
-
+    
 }

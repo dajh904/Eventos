@@ -27,7 +27,16 @@ public class Ubicacionevento {
         this.nombre = nombre;
     }
 
-    //Constructor
+    //Constructores
     public Ubicacionevento() {
+    }
+
+    public Ubicacionevento(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    public Ubicacionevento(int id_Ubicacionevento, String nombre) {
+        Id_Ubicacionevento = id_Ubicacionevento;
+        this.nombre = nombre;
     }
 }

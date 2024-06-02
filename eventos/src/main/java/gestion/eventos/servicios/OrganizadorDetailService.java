@@ -22,7 +22,7 @@ public class OrganizadorDetailService implements UserDetailsService {
         Optional<Organizador> organizador = organizadorRepo.findByCorreo(correo);
         if (organizador.isPresent()) {
             return User.builder()
-                            .username(organizador.get().getNombre() + " " + organizador.get().getApellido())
+                            .username(organizador.get().getCorreo())
                             .password(organizador.get().getContrasena())
                             .build();
         } else {

@@ -54,15 +54,18 @@
         <div class="title-admin mb-2">
             <h1>Crear Evento</h1>
         </div>
-        <form th:object="${evento}" th:action="@{/admin/crear-evento/guardar}" method="post">
+        <form th:object="${evento}" th:action="@{/admin/evento/editar/guardar}" method="post">
             <h2 class="mb-3 input-group"><i class="bi bi-pencil-square"></i><input type="text"
                     placeholder="NOMBRE DEL EVENTO" class="form-control border border-0 fw-bold" th:field="*{nombre}">
             </h2>
+            <div class="mb-3">
+				<input type="hidden" class="form-control" id="Identificacion" name="Identificacion" th:field="*{Id_evento}">
+			</div>
             <div class="d-flex flex-column flex-xxl-row justify-content-between">
                 <div class="flex-md-column">
-                    <div class="mb-3 d-none">
+                    <div class="mb-3">
                         <label for="Estado" class="form-label">Estado del evento:</label>
-                        <select class="form-select" id="Estado" name="Estado" th:field="*{Id_Estadoevento}" required>
+                        <select class="form-select" id="Estado" name="Estado" th:field="*{Id_Estadoevento}">
                             <option th:each="estado:${estado}" th:value="${estado.Id_Estadoevento}"
                                 th:text="${estado.nombre}">
                             </option>
@@ -79,17 +82,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr th:each="boleto:${boleteria}">
+                                    <input type="hidden" name="evento_boleto" th:value="${boleto.Id_TipoBoleto_Evento}">
                                     <td>
                                         <input class="form-control border border-0" type="text" placeholder="Platino"
-                                            name="boleto" required>
+                                            name="boleto" th:value="${boleto.Id_Tipoboleto.nombre}" required>
                                     </td>
                                     <td>
                                         <input class="form-control border border-0" type="number" placeholder="$$$"
-                                            name="precio" required>
+                                            name="precio" th:value="${boleto.precioboleto}" required>
                                     </td>
-                                    <td><input class="form-control border border-0" type="number" placeholder="100"
-                                            name="cantidad" required></td>
+                                    <td>
+                                        <input class="form-control border border-0" type="number" placeholder="100"
+                                            name="cantidad" th:value="${boleto.cantidad_disp}" required>
+                                    </td>
                                     <td>
                                         <a role="button"
                                             class="btn btn-outline-danger btn-sm d-flex align-items-center justify-content-center"
@@ -114,17 +120,20 @@
                                 <tr>
                                     <td colspan="2">
                                         <input type="datetime-local" class="form-control border-0"
-                                            placeholder="Fecha inicio" th:field="*{fecha_ini}" required>
+                                            placeholder="Fecha inicio" id="fecha_ini" th:field="*{fecha_ini}" th:value="*{fecha_ini}" required>
                                     </td>
                                     <td colspan="2">
                                         <input type="datetime-local" class="form-control border-0"
-                                            placeholder="Fecha fin" th:field="*{fecha_fin}" required>
+                                            placeholder="Fecha fin" id="fecha_fin" th:field="*{fecha_fin}" th:value="*{fecha_fin}" required>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="w-50 text-center" colspan="1"><span>Ubicación</span></th>
-                                    <td colspan="3"><input type="text" class="form-control border-0"
-                                            placeholder="Ingrese ubicación" name="ubicacion" th:field="*{Id_Ubicacion.nombre}" required></td>
+                                    <td colspan="3">
+                                        <input type="text" class="form-control border-0"
+                                            placeholder="Ingrese ubicación" name="ubicacion" th:field="*{Id_Ubicacion.nombre}" required>
+                                        <input type="hidden" class="form-control" id="Ubicacion_id" name="Id_Ubicacion" th:field="*{Id_Ubicacion.Id_Ubicacionevento}">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th class="text-center" colspan="1">Aforo</th>
@@ -137,7 +146,7 @@
                                     <td rowspan="4" colspan="4">
                                         <textarea type="text" class="form-control border-0"
                                             placeholder="Ingrese una descripción del evento" rows="10"
-                                            th:field="*{descripcion}" maxlength="500">
+                                            th:field="*{descripcion}" maxlength="500" required>
                                         </textarea>
                                     </td>
                                 </tr>

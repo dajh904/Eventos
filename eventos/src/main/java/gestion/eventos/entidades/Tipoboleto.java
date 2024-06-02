@@ -27,7 +27,16 @@ public class Tipoboleto {
         this.nombre = nombre;
     }
 
-    //Constructor
+    //Constructores
     public Tipoboleto() {
+    }
+    
+    public Tipoboleto(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    public Tipoboleto(int id_Tipoboleto, String nombre) {
+        Id_Tipoboleto = id_Tipoboleto;
+        this.nombre = nombre;
     }
 }

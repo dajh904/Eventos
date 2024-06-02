@@ -3,6 +3,8 @@
     --azul-medio: #0077B6;
     --azul-claro: #90E0EF;
     --gris-oscuro: #0A0908;
+    --beige: #EAE0D5;
+    --marron-claro: #C6AC8F;
     --negro: #000000 !important;
     --blanco: #ffffff !important;
 }
@@ -22,6 +24,24 @@
 
 .bg-gris-oscuro{
     background-color: var(--gris-oscuro);
+}
+
+.bg-beige{
+    background-color: var(--beige);
+}
+
+.bg-beige:hover{
+    background-color: var(--marron-claro);
+    color: var(--negro);
+}
+
+.bg-marron-claro{
+    background-color: var(--marron-claro);
+}
+
+.bg-marron-claro:hover{
+    background-color: var(--beige);
+    color: var(--negro);
 }
 
 .bg-blanco{
@@ -87,7 +107,7 @@ body{
 
 .card-img-evento{
     height: 247px;
-    object-fit:cover;
+    object-fit:fill;
 }
 
 /* Inputs login */

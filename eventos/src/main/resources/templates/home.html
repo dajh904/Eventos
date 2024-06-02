@@ -33,9 +33,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggler">
-                    <form class="d-flex mx-auto py-3" role="search">
+                    <form th:action="@{/explorar?}+ search.value" class="d-flex mx-auto py-3" role="search" method="get">
                         <div class="input-group">
-                            <input type="search" class="form-control" placeholder="Buscar evento..." aria-label="Buscar"
+                            <input type="search" class="form-control" name="search" placeholder="Buscar evento..." aria-label="Buscar"
                                 aria-describedby="button-addon">
                             <button class="btn btn-secondary" type="submit" id="button-addon"><i
                                     class="bi bi-search"></i></button>
@@ -99,15 +99,35 @@
     <main class="container-fluid my-3 px-4">
         <h1 class="title mb-3">EVENTOS DESTACADOS</h1>
         <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 g-4">
+            <div class="col" th:each="evento:${eventos}">
+                <div class="card border-2 h-100">
+                    <a th:href="@{#}"> <!--Link del evento-->
+                        <img src="/img/sistema.webp" class="card-img-top card-img-evento" alt="No hay sistema">
+                    </a>
+                    <div class="card-body p-0">
+                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold" th:text="*{evento.nombre}"></h5>
+                        <div class="d-flex justify-content-between m-0 py-2">
+                            <div>
+                                <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                <h6 class="m-0 flex-fill text-center" th:text="*{evento.fecha_ini}"></h6>
+                            </div>
+                            <p class="m-0 ps-2 border-2 border-start flex-fill" th:text="*{evento.descripcion}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col">
                 <div class="card border-2 h-100">
                     <a th:href="@{/home}"> <!--Link del evento-->
                         <img src="/img/esports.jpg" class="card-img-top card-img-evento" alt="...">
                     </a>
                     <div class="card-body p-0">
-                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom">Titulo Evento</h5>
+                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
                         <div class="d-flex justify-content-between m-0 py-2">
-                            <h6 class="m-0 flex-fill text-center">Fecha</h6>
+                            <div>
+                                <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                            </div>
                             <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
                         </div>
                     </div>
@@ -119,9 +139,12 @@
                         <img src="/img/teatro.jpg" class="card-img-top card-img-evento" alt="...">
                     </a>
                     <div class="card-body p-0">
-                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom">Titulo Evento</h5>
+                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
                         <div class="d-flex justify-content-between m-0 py-2">
-                            <h6 class="m-0 flex-fill text-center">Fecha</h6>
+                            <div>
+                                <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                            </div>
                             <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
                         </div>
                     </div>
@@ -133,9 +156,12 @@
                         <img src="/img/concierto.jpg" class="card-img-top card-img-evento" alt="...">
                     </a>
                     <div class="card-body p-0">
-                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom">Titulo Evento</h5>
+                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
                         <div class="d-flex justify-content-between m-0 py-2">
-                            <h6 class="m-0 flex-fill text-center">Fecha</h6>
+                            <div>
+                                <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                            </div>
                             <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
                         </div>
                     </div>
@@ -147,9 +173,12 @@
                         <img src="/img/teatro.jpg" class="card-img-top card-img-evento" alt="...">
                     </a>
                     <div class="card-body p-0">
-                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom">Titulo Evento</h5>
+                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
                         <div class="d-flex justify-content-between m-0 py-2">
-                            <h6 class="m-0 flex-fill text-center">Fecha</h6>
+                            <div>
+                                <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                            </div>
                             <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
                         </div>
                     </div>
@@ -161,9 +190,12 @@
                         <img src="/img/Rock-concert.jpeg" class="card-img-top card-img-evento" alt="...">
                     </a>
                     <div class="card-body p-0">
-                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom">Titulo Evento</h5>
+                        <h5 class="text-center mb-0 py-2 border-2 border-top border-bottom fw-bold">Titulo Evento</h5>
                         <div class="d-flex justify-content-between m-0 py-2">
-                            <h6 class="m-0 flex-fill text-center">Fecha</h6>
+                            <div>
+                                <h6 class="text-center fw-bold">Fecha y hora:</h6>
+                                <h6 class="m-0 flex-fill text-center">dd-mm-yyyy hh:mm</h6>
+                            </div>
                             <p class="m-0 ps-2 border-2 border-start flex-fill">Descripción evento</p>
                         </div>
                     </div>

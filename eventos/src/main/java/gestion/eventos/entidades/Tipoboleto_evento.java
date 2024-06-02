@@ -1,6 +1,8 @@
 package gestion.eventos.entidades;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,13 +15,16 @@ public class Tipoboleto_evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id_TipoBoleto_Evento;
-    @ManyToOne
-    @JoinColumn(name = "Id_Tipoboleto")
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Id_Tipoboleto", referencedColumnName = "Id_Tipoboleto")
     private Tipoboleto Id_Tipoboleto;
+
     private Integer precioboleto;
     private Integer cantidad_disp;
-    @ManyToOne
-    @JoinColumn(name = "Id_evento")
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "Id_evento", referencedColumnName = "Id_evento")
     private Evento Id_evento;
 
     //Getters y Setters
@@ -53,7 +58,24 @@ public class Tipoboleto_evento {
     public void setId_evento(Evento id_evento) {
         Id_evento = id_evento;
     }
-    //Constructor
+    //Constructores
     public Tipoboleto_evento() {
     }
+    
+    public Tipoboleto_evento(int id_TipoBoleto_Evento, Tipoboleto id_Tipoboleto, Integer precioboleto,
+            Integer cantidad_disp, Evento id_evento) {
+        Id_TipoBoleto_Evento = id_TipoBoleto_Evento;
+        Id_Tipoboleto = id_Tipoboleto;
+        this.precioboleto = precioboleto;
+        this.cantidad_disp = cantidad_disp;
+        Id_evento = id_evento;
+    }
+
+    public Tipoboleto_evento(Tipoboleto id_Tipoboleto, Integer precioboleto, Integer cantidad_disp, Evento id_evento) {
+        Id_Tipoboleto = id_Tipoboleto;
+        this.precioboleto = precioboleto;
+        this.cantidad_disp = cantidad_disp;
+        Id_evento = id_evento;
+    }
+    
 }
